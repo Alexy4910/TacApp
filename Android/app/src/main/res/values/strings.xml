@@ -17,4 +17,6 @@
     <string name="palette">Palette</string>
     <string name="update">Update</string>
     <string name="pass">Password</string>
+    <string name="search_city">Search city</string>
+    <string name="rechercher_la_m_t_o_d_une_ville">Rechercher la météo d\'une ville</string>
 </resources>
