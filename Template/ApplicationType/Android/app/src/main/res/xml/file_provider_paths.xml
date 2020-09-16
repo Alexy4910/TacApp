@@ -1,0 +1,4 @@
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <files-path name="import" path="import/"/>
+    <external-path name="external_files" path="."/>
+</paths>

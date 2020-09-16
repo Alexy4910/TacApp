@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/emp_vide"
+        android:orderInCategory="100"
+        android:title="xxxxx"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/declare_palette"
+        android:orderInCategory="200"
+        android:title="xxxxxx"
+        app:showAsAction="never" />
+
+</menu>

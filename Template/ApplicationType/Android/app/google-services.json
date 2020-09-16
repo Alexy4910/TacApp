@@ -1,0 +1,196 @@
+{
+  "project_info": {
+    "project_number": "552893043972",
+    "firebase_url": "https://geodis-296bd.firebaseio.com",
+    "project_id": "geodis-296bd",
+    "storage_bucket": "geodis-296bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552893043972:android:7a97f996516c1320dbec51",
+        "android_client_info": {
+          "package_name": "net.ubisolutions.centpourcent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552893043972-oofstejg78lnbjjfdmpmqgfjg956dm4d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.ubisolutions.centpourcent",
+            "certificate_hash": "d8b4e966c14b9372532565ec2f310988918393a8"
+          }
+        },
+        {
+          "client_id": "552893043972-fumkjtqu53r82tcr6b9i0hjcgfmu5vpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4JdI4Ir_rjzoUtBLPrmOYRSR3xltvEAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552893043972-fumkjtqu53r82tcr6b9i0hjcgfmu5vpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552893043972:android:a371923b687bb1ccdbec51",
+        "android_client_info": {
+          "package_name": "net.univerre.ubisolutions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552893043972-kjihs6biqm1hh45jcubq4hoor2qsb2rs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.univerre.ubisolutions",
+            "certificate_hash": "d8b4e966c14b9372532565ec2f310988918393a8"
+          }
+        },
+        {
+          "client_id": "552893043972-fumkjtqu53r82tcr6b9i0hjcgfmu5vpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4JdI4Ir_rjzoUtBLPrmOYRSR3xltvEAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552893043972-fumkjtqu53r82tcr6b9i0hjcgfmu5vpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552893043972:android:63e7f79bf185e0fedbec51",
+        "android_client_info": {
+          "package_name": "ubisolutions.net.geodis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552893043972-k91dbp4977l0hvdttb5o79c2r38agjuf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ubisolutions.net.geodis",
+            "certificate_hash": "d8b4e966c14b9372532565ec2f310988918393a8"
+          }
+        },
+        {
+          "client_id": "552893043972-fumkjtqu53r82tcr6b9i0hjcgfmu5vpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4JdI4Ir_rjzoUtBLPrmOYRSR3xltvEAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552893043972-fumkjtqu53r82tcr6b9i0hjcgfmu5vpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552893043972:android:023f478abf0e4faedbec51",
+        "android_client_info": {
+          "package_name": "ubisolutions.net.template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552893043972-ljfv9e4799ohl6aceasdit92lau9mf8d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ubisolutions.net.template",
+            "certificate_hash": "d8b4e966c14b9372532565ec2f310988918393a8"
+          }
+        },
+        {
+          "client_id": "552893043972-fumkjtqu53r82tcr6b9i0hjcgfmu5vpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4JdI4Ir_rjzoUtBLPrmOYRSR3xltvEAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552893043972-fumkjtqu53r82tcr6b9i0hjcgfmu5vpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552893043972:android:dee0a23f95feb58ddbec51",
+        "android_client_info": {
+          "package_name": "ubisolutions.net.tsf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552893043972-kekubb4edheoudk8nnqom44grng0ajaa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ubisolutions.net.tsf",
+            "certificate_hash": "d8b4e966c14b9372532565ec2f310988918393a8"
+          }
+        },
+        {
+          "client_id": "552893043972-fumkjtqu53r82tcr6b9i0hjcgfmu5vpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4JdI4Ir_rjzoUtBLPrmOYRSR3xltvEAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552893043972-fumkjtqu53r82tcr6b9i0hjcgfmu5vpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
