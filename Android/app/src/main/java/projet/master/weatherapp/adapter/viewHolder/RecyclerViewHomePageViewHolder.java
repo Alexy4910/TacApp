@@ -10,6 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import projet.master.weatherapp.R;
+import projet.master.weatherapp.listener.GotoDetailViewHolder;
 import projet.master.weatherapp.model.Ville;
 
 public class RecyclerViewHomePageViewHolder extends RecyclerView.ViewHolder {
@@ -19,20 +20,24 @@ public class RecyclerViewHomePageViewHolder extends RecyclerView.ViewHolder {
     public TextView name_ville;
 
     private Context context;
+    private GotoDetailViewHolder gotoDetailViewHolder;
 
-    public RecyclerViewHomePageViewHolder(View itemView, Context context/*, InventaireListener inventaireListener*/) {
+    private Ville ville;
+
+    public RecyclerViewHomePageViewHolder(View itemView, Context context, GotoDetailViewHolder gotoDetailViewHolder) {
         super(itemView);
         this.context = context;
-        //this.inventaireListener = inventaireListener;
+        this.gotoDetailViewHolder = gotoDetailViewHolder;
         ButterKnife.bind(this, itemView);
     }
 
     public void bindTo(Ville ville) {
+        this.ville = ville;
         name_ville.setText(ville.getName());
     }
 
-//    @OnClick(R.id.inventaire_li_container)
-//    public void onClickCell() {
-//        inventaireListener.onClickCellule(inventaireResponse);
-//    }
+    @OnClick(R.id.recycler_view_li_container)
+    public void onClickCell() {
+        gotoDetailViewHolder.onVilleClicked(ville);
+    }
 }

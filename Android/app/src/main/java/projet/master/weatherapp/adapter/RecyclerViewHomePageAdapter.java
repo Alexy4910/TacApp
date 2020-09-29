@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import projet.master.weatherapp.R;
 import projet.master.weatherapp.adapter.viewHolder.RecyclerViewHomePageViewHolder;
+import projet.master.weatherapp.listener.GotoDetailViewHolder;
 import projet.master.weatherapp.model.Ville;
 
 public class RecyclerViewHomePageAdapter extends RecyclerView.Adapter<RecyclerViewHomePageViewHolder> {
@@ -18,18 +19,18 @@ public class RecyclerViewHomePageAdapter extends RecyclerView.Adapter<RecyclerVi
     private Context context;
     private LayoutInflater layoutInflater;
     private ArrayList<Ville> villes;
-    //private InventaireListener inventaireListener;
+    private GotoDetailViewHolder gotoDetailViewHolder;
 
-    public RecyclerViewHomePageAdapter(Context context /*InventaireListener inventaireListener*/) {
+    public RecyclerViewHomePageAdapter(Context context , GotoDetailViewHolder gotoDetailViewHolder) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
-        //this.inventaireListener = inventaireListener;
+        this.gotoDetailViewHolder = gotoDetailViewHolder;
     }
 
     @NonNull
     @Override
     public RecyclerViewHomePageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new RecyclerViewHomePageViewHolder(layoutInflater.inflate(R.layout.recycler_view_listitem, parent, false), context/*, inventaireListener*/);
+        return new RecyclerViewHomePageViewHolder(layoutInflater.inflate(R.layout.recycler_view_listitem, parent, false), context, gotoDetailViewHolder);
     }
 
     @Override
