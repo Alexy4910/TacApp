@@ -45,10 +45,26 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_search_city"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/recherche_city"
         android:layout_margin="20dp"
+        android:visibility="gone"
         android:background="@drawable/recyclerview_border"/>
+
+    <GridView
+        android:id="@+id/grid_view_search_city"
+        android:layout_width="match_parent"
+        android:layout_below="@id/recherche_city"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:verticalSpacing="24dp"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
+        android:columnWidth="100dp"
+        android:layout_height="match_parent"
+        />
+
 
 </RelativeLayout>

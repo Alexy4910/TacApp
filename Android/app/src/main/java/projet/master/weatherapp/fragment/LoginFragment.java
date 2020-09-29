@@ -60,13 +60,13 @@ public class LoginFragment extends Fragment {
 
         namePhone.setText(UbiUtil.getDeviceIdentifier(getContext()));
 
-        ((MainActivity) getActivity()).displayProgressDialog();
         return view;
     }
 
 
     @OnClick(R.id.login_connection)
     public void onConnectClick(){
-
+        HomePageFragment homePageFragment = new HomePageFragment();
+        ((MainActivity) getActivity()).showFragment(homePageFragment, HomePageFragment.TAG);
     }
 }
