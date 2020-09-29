@@ -15,7 +15,7 @@ import projet.master.weatherapp.model.Ville;
 public class RecyclerViewHomePageViewHolder extends RecyclerView.ViewHolder {
 
 
-    @BindView(R.id.ville_name)
+    @BindView(R.id.ville_name_recycler_view)
     public TextView name_ville;
 
     private Context context;

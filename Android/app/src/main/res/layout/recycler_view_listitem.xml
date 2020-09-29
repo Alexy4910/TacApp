@@ -17,7 +17,7 @@
         android:paddingTop="5dp">
 
         <TextView
-            android:id="@+id/ville_name"
+            android:id="@+id/ville_name_recycler_view"
             style="@style/Fragment_TextStyle"
             android:layout_width="match_parent"
             tools:text="Inventaire 1" />

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import projet.master.weatherapp.R;
 import projet.master.weatherapp.adapter.GridViewHomePageAdapter;
 import projet.master.weatherapp.adapter.RecyclerViewHomePageAdapter;
@@ -71,5 +72,16 @@ public class HomePageFragment extends Fragment {
 
         gridViewHomePageAdapter = new GridViewHomePageAdapter(getContext(), villes);
         gridView.setAdapter(gridViewHomePageAdapter);
+    }
+
+    @OnCheckedChanged(R.id.switch_test)
+    public void onSwitchView(){
+        if (recyclerView.getVisibility() == View.VISIBLE){
+            recyclerView.setVisibility(View.GONE);
+            gridView.setVisibility(View.VISIBLE);
+        }else{
+            recyclerView.setVisibility(View.VISIBLE);
+            gridView.setVisibility(View.GONE);
+        }
     }
 }
