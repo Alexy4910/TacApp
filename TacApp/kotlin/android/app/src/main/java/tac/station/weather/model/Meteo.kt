@@ -12,6 +12,10 @@ open class Meteo: RealmObject() {
     private var timezone = 0
     private var message: String? = null
 
+
+
+    private var isFavorite = false;
+
     fun getName(): String? {
         return name
     }
@@ -42,5 +46,14 @@ open class Meteo: RealmObject() {
 
     fun getMessage(): String? {
         return message
+    }
+
+
+    fun setIsFavorite(favorite: Boolean) {
+        this.isFavorite = favorite
+    }
+
+    fun getIsFavorite(): Boolean {
+        return isFavorite
     }
 }

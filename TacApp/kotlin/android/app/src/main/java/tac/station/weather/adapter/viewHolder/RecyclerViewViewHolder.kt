@@ -20,11 +20,10 @@ import android.os.Build
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import tac.station.weather.R
 import tac.station.weather.adapter.RecyclerViewAdapter
 import tac.station.weather.databinding.WeatherRecyclerViewItemBinding
 import tac.station.weather.model.Meteo
-import tac.station.weather.setupRecyclerView.EmailSwipeActionDrawable
+import tac.station.weather.setupRecyclerView.WeatherSwipeActionDrawable
 import tac.station.weather.setupRecyclerView.ReboundingSwipeActionCallback
 import kotlin.math.abs
 
@@ -34,50 +33,58 @@ class RecyclerViewViewHolder(
         listener: RecyclerViewAdapter.RecyclerViewAdapterListener
 ): RecyclerView.ViewHolder(binding.root), ReboundingSwipeActionCallback.ReboundableViewHolder {
 
-    private val starredCornerSize = "24dp"
+    private val starredCornerSize = 24
 
     override val reboundableView: View = binding.cardView
 
     init {
         binding.run {
             this.listener = listener
-            root.background = EmailSwipeActionDrawable(root.context)
+            root.background = WeatherSwipeActionDrawable(root.context)
         }
     }
 
     fun bind(meteo: Meteo) {
         binding.meteo = meteo
+        binding.root.isActivated = meteo.getIsFavorite()
 
-        val interpolation = 0F
+        val interpolation = if (meteo.getIsFavorite()) 3F else 0F
         updateCardViewTopLeftCornerSize(interpolation)
 
         binding.executePendingBindings()
+
     }
 
     override fun onReboundOffsetChanged(
-        currentSwipePercentage: Float,
-        swipeThreshold: Float,
-        currentTargetHasMetThresholdOnce: Boolean
+            currentSwipePercentage: Float,
+            swipeThreshold: Float,
+            currentTargetHasMetThresholdOnce: Boolean
     ) {
         // Only alter shape and activation in the forward direction once the swipe
         // threshold has been met. Undoing the swipe would require releasing the item and
         // re-initiating the swipe.
         if (currentTargetHasMetThresholdOnce) return
 
+        val isStarred = binding.meteo?.getIsFavorite() ?: false
+
         // Animate the top left corner radius of the email card as swipe happens.
         val interpolation = (currentSwipePercentage / swipeThreshold).coerceIn(0F, 1F)
-        val adjustedInterpolation = abs(0F - interpolation)
+        val adjustedInterpolation = abs((if (isStarred) 3F else 0F) - interpolation)
         updateCardViewTopLeftCornerSize(adjustedInterpolation)
 
         // Start the background animation once the threshold is met.
         val thresholdMet = currentSwipePercentage >= swipeThreshold
-        val shouldStar = true
+        val shouldStar = when {
+            thresholdMet && isStarred -> false
+            thresholdMet && !isStarred -> true
+            else -> return
+        }
         binding.root.isActivated = shouldStar
     }
 
     override fun onRebounded() {
-        val email = binding.meteo ?: return
-        binding.listener?.onEmailStarChanged(email, true)
+        val meteo = binding.meteo ?: return
+        binding.listener?.onEmailStarChanged(meteo, !meteo.getIsFavorite())
     }
 
     // We have to update the shape appearance itself to have the MaterialContainerTransform pick up
@@ -86,7 +93,9 @@ class RecyclerViewViewHolder(
     // interpolation property, or in the case of MaterialCardView, the progress property.
     private fun updateCardViewTopLeftCornerSize(interpolation: Float) {
         binding.cardView.apply {
-
+            shapeAppearanceModel = shapeAppearanceModel.toBuilder()
+                    .setTopLeftCornerSize(interpolation * starredCornerSize)
+                    .build()
         }
     }
 }

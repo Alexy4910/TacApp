@@ -3,9 +3,9 @@ package tac.station.weather
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 
-class ShrineApplication : Application() {
+class WeatherStationApplication : Application() {
     companion object {
-        lateinit var instance: ShrineApplication
+        lateinit var instance: WeatherStationApplication
             private set
     }
 

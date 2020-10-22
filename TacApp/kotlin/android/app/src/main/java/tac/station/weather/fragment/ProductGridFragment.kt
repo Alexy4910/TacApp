@@ -54,15 +54,15 @@ class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterL
                 ContextCompat.getDrawable(context!!, R.drawable.weather_close_menu))) // Menu close icon
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            binding.productGrid.background = context?.getDrawable(R.drawable.weather_product_grid_background_shape)
-        }
-
-
         var meteo = Meteo()
         meteo.setMessage("LOULOULOU")
+
+        var meteo2 = Meteo()
+        meteo2.setMessage("LOULOULOU")
+
         var list = ArrayList<Meteo>()
         list.add(meteo)
+        list.add(meteo2)
         binding.recyclerView.apply {
             val itemTouchHelper = ItemTouchHelper(ReboundingSwipeActionCallback())
             itemTouchHelper.attachToRecyclerView(this)
@@ -80,7 +80,8 @@ class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterL
     }
 
     override fun onEmailStarChanged(meteo: Meteo, newValue: Boolean) {
-
+        meteo.setIsFavorite(newValue)
+        meteoAdapter?.notifyDataSetChanged()
     }
 
     override fun onEmailArchived(meteo: Meteo) {
