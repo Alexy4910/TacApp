@@ -19,14 +19,24 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
+import projet.master.weatherapp.MainActivity;
 import projet.master.weatherapp.R;
 import projet.master.weatherapp.adapter.GridViewHomePageAdapter;
 import projet.master.weatherapp.adapter.RecyclerViewHomePageAdapter;
-import projet.master.weatherapp.listener.GotoDetailViewHolder;
+import projet.master.weatherapp.config.ServiceWeatherStation;
+import projet.master.weatherapp.config.WeatherStationApi;
+import projet.master.weatherapp.listener.GoToDetailViewHolderListener;
+import projet.master.weatherapp.model.Parametre;
 import projet.master.weatherapp.model.Ville;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class HomePageFragment extends Fragment implements GotoDetailViewHolder {
+public class HomePageFragment extends Fragment implements GoToDetailViewHolderListener {
     public static final String TAG = HomePageFragment.class.getSimpleName();
+
+    private static final String CITY_NOT_FOUND = "city not found";
+
 
     @BindView(R.id.recycler_view_search_city)
     public RecyclerView recyclerView;
@@ -39,6 +49,10 @@ public class HomePageFragment extends Fragment implements GotoDetailViewHolder {
 
     private ArrayList<Ville> villes;
 
+    private Parametre parametre;
+    private int nbVillesSync = 0;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,24 +60,42 @@ public class HomePageFragment extends Fragment implements GotoDetailViewHolder {
 
         ButterKnife.bind(this, view);
 
-        initTest();
+        getInfoWS();
         return view;
     }
 
+    private void getInfoWS(){
+        villes = new ArrayList<>(parametre.getVilles());
+        for (Ville ville: villes){
 
-    private void initTest(){
-        Ville ville = new Ville();
-        ville.setName("Lille");
-        Ville ville2 = new Ville();
-        ville2.setName("Lyon");
-        Ville ville3 = new Ville();
-        ville3.setName("Paris");
+            ServiceWeatherStation service = WeatherStationApi.getService();
+            Call<Ville> call = service.getWeatherByCity(ville.getName(), ServiceWeatherStation.API_KEY);
+            call.enqueue(new Callback<Ville>() {
+                @Override
+                public void onResponse(Call<Ville> call, Response<Ville> response) {
+                    if (response.isSuccessful()){
+                        Ville villeBody = response.body();
+                        ville.setTimezone(villeBody.getTimezone());
+                    }else{
+                        getActivity().runOnUiThread(() -> Toast.makeText(getContext(), ville.getName() + " n'existe pas...", Toast.LENGTH_SHORT).show());
+                    }
+                    nbVillesSync++;
+                    if (nbVillesSync == villes.size()){
+                        initList();
+                    }
+                }
 
-        villes = new ArrayList<>();
-        villes.add(ville);
-        villes.add(ville2);
-        villes.add(ville3);
+                @Override
+                public void onFailure(Call<Ville> call, Throwable t) {
+                    getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show());
+                }
+            });
+        }
 
+
+    }
+
+    private void initList(){
         recyclerViewHomePageAdapter =  new RecyclerViewHomePageAdapter(getActivity(), this);
         recyclerViewHomePageAdapter.setVilles(villes);
         DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
@@ -90,5 +122,12 @@ public class HomePageFragment extends Fragment implements GotoDetailViewHolder {
     @Override
     public void onVilleClicked(Ville ville) {
         Toast.makeText(getContext(), ville.getName(), Toast.LENGTH_LONG).show();
+        DetailWeatherFragment detailWeatherFragment = new DetailWeatherFragment();
+        detailWeatherFragment.setVille(ville);
+        ((MainActivity) getActivity()).showFragment(detailWeatherFragment, DetailWeatherFragment.TAG);
+    }
+
+    public void setParametre(Parametre parametre) {
+        this.parametre = parametre;
     }
 }

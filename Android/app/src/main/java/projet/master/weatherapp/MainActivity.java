@@ -1,5 +1,6 @@
 package projet.master.weatherapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -91,30 +92,6 @@ public class MainActivity extends AppCompatActivity {
 //            } else {
 //                manager.popBackStackImmediate(fragmentId, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 //            }
-        }
-    }
-
-    public void installUpdate() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-            File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "shared");
-            if (!path.exists()) {
-                path.mkdirs();
-            }
-            File file = new File(path, "update.apk");
-            Uri uri = FileProvider.getUriForFile(this, "ubisolutions.net.apppsa.fileprovider", file);
-            //Uri uri = Uri.fromFile(file);
-            intent.setData(uri);
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            startActivityForResult(intent, 1);
-        } else {
-            File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "shared");
-            if (!path.exists()) {
-                path.mkdirs();
-            }
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.fromFile(new File(path, "update.apk")), "application/vnd.android.package-archive");
-            startActivityForResult(intent, 1);
         }
     }
 

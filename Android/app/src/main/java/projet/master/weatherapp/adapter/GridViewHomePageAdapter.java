@@ -10,19 +10,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import projet.master.weatherapp.R;
-import projet.master.weatherapp.listener.GotoDetailViewHolder;
+import projet.master.weatherapp.listener.GoToDetailViewHolderListener;
 import projet.master.weatherapp.model.Ville;
 
 public class GridViewHomePageAdapter extends BaseAdapter {
 
     private Context context;
     private ArrayList<Ville> villes;
-    private GotoDetailViewHolder gotoDetailViewHolder;
+    private GoToDetailViewHolderListener goToDetailViewHolderListener;
 
-    public GridViewHomePageAdapter(Context context, ArrayList<Ville> villes, GotoDetailViewHolder gotoDetailViewHolder){
+    public GridViewHomePageAdapter(Context context, ArrayList<Ville> villes, GoToDetailViewHolderListener goToDetailViewHolderListener){
         this.context = context;
         this.villes = villes;
-        this.gotoDetailViewHolder = gotoDetailViewHolder;
+        this.goToDetailViewHolderListener = goToDetailViewHolderListener;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class GridViewHomePageAdapter extends BaseAdapter {
         //authorTextView.setText(mContext.getString(book.getAuthor()));
 
         view.setOnClickListener(e -> {
-            this.gotoDetailViewHolder.onVilleClicked(villes.get(i));
+            this.goToDetailViewHolderListener.onVilleClicked(villes.get(i));
         });
         
         return view;

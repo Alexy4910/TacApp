@@ -19,4 +19,7 @@
     <string name="pass">Password</string>
     <string name="search_city">Search city</string>
     <string name="rechercher_la_m_t_o_d_une_ville">Rechercher la météo d\'une ville</string>
+    <string name="ajouter_en_favori">Ajouter en favori</string>
+    <string name="retour">Retour</string>
+    <string name="valider">Valider</string>
 </resources>
