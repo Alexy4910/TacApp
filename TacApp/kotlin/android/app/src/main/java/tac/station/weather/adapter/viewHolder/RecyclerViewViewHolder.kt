@@ -16,16 +16,18 @@
 
 package tac.station.weather.adapter.viewHolder
 
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import tac.station.weather.adapter.RecyclerViewAdapter
 import tac.station.weather.databinding.WeatherRecyclerViewItemBinding
-import tac.station.weather.model.Meteo
-import tac.station.weather.setupRecyclerView.WeatherSwipeActionDrawable
+import tac.station.weather.model.Ville
 import tac.station.weather.setupRecyclerView.ReboundingSwipeActionCallback
+import tac.station.weather.setupRecyclerView.WeatherSwipeActionDrawable
 import kotlin.math.abs
+
 
 @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
 class RecyclerViewViewHolder(
@@ -44,15 +46,15 @@ class RecyclerViewViewHolder(
         }
     }
 
-    fun bind(meteo: Meteo) {
-        binding.meteo = meteo
-        binding.root.isActivated = meteo.getIsFavorite()
-
-        val interpolation = if (meteo.getIsFavorite()) 3F else 0F
+    fun bind(ville: Ville) {
+        binding.ville = ville
+        binding.root.isActivated = ville.isFavorite
+        val bitmap = BitmapFactory.decodeByteArray(ville.icon, 0, ville.icon.size)
+        binding.senderProfileImageView.setImageBitmap(bitmap)
+        val interpolation = if (ville.isFavorite) 3F else 0F
         updateCardViewTopLeftCornerSize(interpolation)
 
         binding.executePendingBindings()
-
     }
 
     override fun onReboundOffsetChanged(
@@ -65,7 +67,7 @@ class RecyclerViewViewHolder(
         // re-initiating the swipe.
         if (currentTargetHasMetThresholdOnce) return
 
-        val isStarred = binding.meteo?.getIsFavorite() ?: false
+        val isStarred = binding.ville?.isFavorite ?: false
 
         // Animate the top left corner radius of the email card as swipe happens.
         val interpolation = (currentSwipePercentage / swipeThreshold).coerceIn(0F, 1F)
@@ -83,8 +85,8 @@ class RecyclerViewViewHolder(
     }
 
     override fun onRebounded() {
-        val meteo = binding.meteo ?: return
-        binding.listener?.onEmailStarChanged(meteo, !meteo.getIsFavorite())
+        val meteo = binding.ville ?: return
+        binding.listener?.onEmailStarChanged(meteo, !meteo.isFavorite)
     }
 
     // We have to update the shape appearance itself to have the MaterialContainerTransform pick up

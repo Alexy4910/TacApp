@@ -6,9 +6,4 @@
         android:icon="@drawable/weather_search"
         android:title="@string/shr_search_title"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/filter"
-        android:icon="@drawable/weather_filter"
-        android:title="@string/shr_filter_title"
-        app:showAsAction="always" />
 </menu>

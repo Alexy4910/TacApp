@@ -12,6 +12,7 @@
         tools:context="tac.station.weather.fragment.ProductGridFragment">
 
         <LinearLayout
+            android:id="@+id/test2"
             style="@style/Widget.Shrine.Backdrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,7 +20,24 @@
             android:orientation="vertical"
             android:paddingTop="88dp">
 
-            <include layout="@layout/weather_backdrop" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mode_grille"
+                style="@style/Widget.Shrine.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/passer_en_mode_grille" />
+
+            <View
+                android:layout_width="56dp"
+                android:layout_height="1dp"
+                android:layout_margin="16dp"
+                android:background="?android:attr/textColorPrimary" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Shrine.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/parametre" />
         </LinearLayout>
 
         <com.google.android.material.appbar.AppBarLayout
@@ -37,7 +55,7 @@
                 android:paddingEnd="12dp"
                 android:paddingRight="12dp"
                 app:contentInsetStart="0dp"
-                app:navigationIcon="@drawable/weather_branded_menu"
+                app:navigationIcon="@drawable/weahter_menu"
                 app:title="@string/app_name" />
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -61,7 +79,24 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
+
+
         </androidx.core.widget.NestedScrollView>
+
+        <GridView
+            android:id="@+id/grid_view_search_city"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:verticalSpacing="24dp"
+            android:horizontalSpacing="10dp"
+            android:numColumns="2"
+            android:layout_marginTop="56dp"
+            android:columnWidth="100dp"
+            android:elevation="8dp"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
 
     </FrameLayout>
 </layout>

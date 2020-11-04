@@ -15,7 +15,7 @@ import android.widget.ImageView
  * the Y-axis when the navigation icon in the toolbar is pressed.
  */
 class NavigationIconClickListener @JvmOverloads internal constructor(
-        private val context: Context, private val sheet: View, private val interpolator: Interpolator? = null,
+        private val context: Context, private val sheet: View, private val sheet2: View, private val interpolator: Interpolator? = null,
         private val openIcon: Drawable? = null, private val closeIcon: Drawable? = null) : View.OnClickListener {
 
     private val animatorSet = AnimatorSet()
@@ -47,6 +47,14 @@ class NavigationIconClickListener @JvmOverloads internal constructor(
         }
         animatorSet.play(animator)
         animator.start()
+
+        val animatorBis = ObjectAnimator.ofFloat(sheet2, "translationY", (if (backdropShown) translateY else 0).toFloat())
+        animatorBis.duration = 500
+        if (interpolator != null) {
+            animatorBis.interpolator = interpolator
+        }
+        animatorSet.play(animatorBis)
+        animatorBis.start()
     }
 
     private fun updateIcon(view: View) {
@@ -59,6 +67,7 @@ class NavigationIconClickListener @JvmOverloads internal constructor(
             } else {
                 view.setImageDrawable(openIcon)
             }
+
         }
     }
 }

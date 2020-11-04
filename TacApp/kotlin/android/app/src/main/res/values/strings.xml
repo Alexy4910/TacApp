@@ -24,4 +24,8 @@
     <string name="passer_en_mode_grille">Passer en mode grille</string>
 
     <string name="email_card_transition_name">email_card_%1$s</string>
+    <string name="mode_grille">Passer en mode liste</string>
+    <string name="mode_list">Passer en mode grille</string>
+    <string name="ajout_au_favori">Ajout au favori</string>
+    <string name="retour">Retour</string>
 </resources>

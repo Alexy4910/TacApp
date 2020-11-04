@@ -1,38 +1,35 @@
 package tac.station.weather.adapter
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import tac.station.weather.adapter.viewHolder.RecyclerViewViewHolder
 import tac.station.weather.databinding.WeatherRecyclerViewItemBinding
-import tac.station.weather.model.Meteo
+import tac.station.weather.model.Ville
 
 /**
  * Simple adapter to display Email's in MainActivity.
  */
 class RecyclerViewAdapter(
         private val listener: RecyclerViewAdapterListener,
-        private var listeMeteo: ArrayList<Meteo>
+        private var listeMeteo: List<Ville>
 ) : RecyclerView.Adapter<RecyclerViewViewHolder>() {
 
     interface RecyclerViewAdapterListener {
-        fun onEmailClicked(cardView: View, meteo: Meteo)
-        fun onEmailStarChanged(meteo: Meteo, newValue: Boolean)
-        fun onEmailArchived(meteo: Meteo)
+        fun onEmailClicked(cardView: View, ville: Ville)
+        fun onEmailStarChanged(ville: Ville, newValue: Boolean)
+        fun onEmailArchived(ville: Ville)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewViewHolder {
         return RecyclerViewViewHolder(
-            WeatherRecyclerViewItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            ),
-            listener
+                WeatherRecyclerViewItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                ),
+                listener
         )
     }
 

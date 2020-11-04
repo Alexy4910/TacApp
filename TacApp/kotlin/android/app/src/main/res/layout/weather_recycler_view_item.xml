@@ -7,8 +7,8 @@
     <data>
 
         <variable
-            name="meteo"
-            type="tac.station.weather.model.Meteo" />
+            name="ville"
+            type="tac.station.weather.model.Ville" />
 
         <variable
             name="listener"
@@ -31,8 +31,8 @@
             android:clickable="true"
             android:elevation="@dimen/plane_00"
             android:focusable="true"
-            android:onClick="@{(view) -> listener.onEmailClicked(view, meteo)}"
-            android:transitionName="@{@string/email_card_transition_name(meteo.id)}"
+            android:onClick="@{(view) -> listener.onEmailClicked(view, ville)}"
+            android:transitionName="@{@string/email_card_transition_name(ville.id)}"
             app:cardPreventCornerOverlap="false">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,7 +49,7 @@
                     android:layout_marginTop="@dimen/grid_1"
                     android:layout_marginEnd="@dimen/grid_2"
                     android:maxLines="1"
-                    android:text="@{meteo.message}"
+                    android:text="@{ville.name}"
                     android:textAppearance="?attr/textAppearanceBody2"
                     app:layout_constraintEnd_toStartOf="@+id/sender_profile_image_view"
                     app:layout_constraintStart_toStartOf="parent"
@@ -64,13 +64,14 @@
                     android:layout_marginTop="@dimen/grid_1"
                     android:layout_marginEnd="@dimen/grid_2"
                     android:maxLines="1"
-                    android:text="@{meteo.message}"
+                    android:maxLength="5"
+                    android:text="@{ville.tempearature}"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     app:layout_constraintEnd_toStartOf="@+id/sender_profile_image_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sender_text_view"
                     app:layout_goneMarginEnd="@dimen/grid_2"
-                    tools:text="Package Shipped!" />
+                    tools:text="12.52" />
 
                 <TextView
                     android:id="@+id/body_preview_text_view"
@@ -80,7 +81,7 @@
                     android:layout_marginTop="@dimen/grid_1"
                     android:layout_marginEnd="@dimen/grid_2"
                     android:maxLines="2"
-                    android:text="@{meteo.message}"
+                    android:text="@{ville.description}"
                     android:textAppearance="?attr/textAppearanceBody1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
