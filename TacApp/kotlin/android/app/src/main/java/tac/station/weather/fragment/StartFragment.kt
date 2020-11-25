@@ -89,9 +89,9 @@ class StartFragment : Fragment(), StartFragmentListener {
                     villeData.wind.speed = villeData.wind.speed?.times(3.6)
 
                     if (villeData.main.temp.toString().length > 5)
-                        villeData.tempearature = villeData.main.temp.toString().substring(0,5) + "°C"
+                        villeData.temperature = villeData.main.temp.toString().substring(0,5) + "°C"
                     else
-                        villeData.tempearature = villeData.main.temp.toString() + "°C"
+                        villeData.temperature = villeData.main.temp.toString() + "°C"
                     villeData.description = villeData.weather[0]?.description
 
                     var icon: Bitmap?

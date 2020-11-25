@@ -4,23 +4,53 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
+/**
+ * Classe général englobant toute les données
+ */
 public class Ville extends RealmObject {
 
+    /**
+     * Id pour la bdd realm
+     */
     @PrimaryKey
     private int id;
 
+    /**
+     * Les coordonnées
+     */
     private Coordonne coord;
+    /**
+     * La liste des météo pour cette ville
+     */
     private RealmList<Weather> weather;
+    /**
+     * Le main
+     */
     private Main main;
+    /**
+     * La vitesse du vent
+     */
     private Wind wind;
+    /**
+     * Nom de la ville
+     */
     private String name;
+    /**
+     * Timezone de la ville
+     */
     private int timezone;
 
+    /**
+     * Savoir si la ville est dans les favoris
+     */
     private boolean favorite = false;
+    /**
+     * Tableau de byte représentant l'icon
+     */
     private byte[] icon;
 
     //Affichage list zone
-    private String tempearature = "";
+    private String temperature = "";
     private String description = "";
 
     public String getName() {
@@ -95,12 +125,12 @@ public class Ville extends RealmObject {
         this.icon = icon;
     }
 
-    public String getTempearature() {
-        return tempearature;
+    public String getTemperature() {
+        return temperature;
     }
 
-    public void setTempearature(String tempearature) {
-        this.tempearature = tempearature;
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
     }
 
     public String getDescription() {

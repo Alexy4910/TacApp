@@ -65,7 +65,7 @@
                     android:layout_marginEnd="@dimen/grid_2"
                     android:maxLines="1"
                     android:maxLength="7"
-                    android:text="@{ville.tempearature}"
+                    android:text="@{ville.setTemperature}"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     app:layout_constraintEnd_toStartOf="@+id/sender_profile_image_view"
                     app:layout_constraintStart_toStartOf="parent"

@@ -59,7 +59,7 @@ public class GridViewHomePageAdapter extends BaseAdapter {
         Bitmap bitmap = BitmapFactory.decodeByteArray(villes.get(i).getIcon(), 0, villes.get(i).getIcon().length);
         imageView.setImageBitmap(bitmap);
         nameTextView.setText(villes.get(i).getName());
-        tempTextView.setText(villes.get(i).getTempearature());
+        tempTextView.setText(villes.get(i).getTemperature());
         descView.setText(villes.get(i).getDescription());
 
         view.setOnClickListener(e -> {
