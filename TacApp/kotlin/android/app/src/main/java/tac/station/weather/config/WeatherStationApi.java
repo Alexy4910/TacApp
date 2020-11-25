@@ -7,12 +7,16 @@ public class WeatherStationApi {
 
     private static Retrofit retrofit = null;
 
+    private static String API_URL = "https://api.openweathermap.org/data/2.5/";
 
-
+    /**
+     * Méthode qui permet la connexion à l'API grâce à retrofit
+     * @return un objet retrofit
+     */
     public static ServiceWeatherStation getService() {
         try {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://api.openweathermap.org/data/2.5/")
+                    .baseUrl(API_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             ServiceWeatherStation service = retrofit.create(ServiceWeatherStation.class);
