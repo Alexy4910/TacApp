@@ -86,7 +86,7 @@ class RecyclerViewViewHolder(
 
     override fun onRebounded() {
         val meteo = binding.ville ?: return
-        binding.listener?.onEmailStarChanged(meteo, !meteo.isFavorite)
+        binding.listener?.onAddFavorite(meteo, !meteo.isFavorite)
     }
 
     // We have to update the shape appearance itself to have the MaterialContainerTransform pick up

@@ -275,14 +275,14 @@
             android:layout_alignParentBottom="true">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/next_button"
+                android:id="@+id/favori_button"
                 style="@style/Widget.Shrine.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_margin="20dp"
-                android:text="@string/ajout_au_favori"
+                android:text="@{ville.favorite ? @string/retirer_des_favoris : @string/ajout_au_favori}"
                 android:textSize="20sp" />
 
             <com.google.android.material.button.MaterialButton

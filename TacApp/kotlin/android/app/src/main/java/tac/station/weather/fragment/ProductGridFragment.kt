@@ -14,12 +14,15 @@ import tac.station.weather.NavigationIconClickListener
 import tac.station.weather.R
 import tac.station.weather.adapter.GridViewHomePageAdapter
 import tac.station.weather.adapter.RecyclerViewAdapter
+import tac.station.weather.databinding.RechercheDialogFragmentBinding
 import tac.station.weather.databinding.WeatherProductGridFragmentBinding
+import tac.station.weather.fragment.dialogFragment.RechercheVilleDialogFragment
+import tac.station.weather.listener.RechercheListener
 import tac.station.weather.model.Ville
 import tac.station.weather.setupRecyclerView.ReboundingSwipeActionCallback
 
 
-class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterListener {
+class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterListener, RechercheListener {
 
     private lateinit var binding: WeatherProductGridFragmentBinding
 
@@ -27,6 +30,8 @@ class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterL
     private var gridViewHomePageAdapter: GridViewHomePageAdapter? = null
 
     private var villes: List<Ville>? = null
+
+    private var villesFiltered: ArrayList<Ville>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +71,10 @@ class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterL
             }
         }
 
+        binding.favori.setOnClickListener {
+            //TODO
+        }
+
         initAdapter()
     }
 
@@ -74,34 +83,35 @@ class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterL
         super.onCreateOptionsMenu(menu, menuInflater)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-//            R.id.mode_grille -> {
-//                Toast.makeText(context, "youpiiiiiiiiiiiiii", Toast.LENGTH_LONG).show()
-//                return true
-//            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onEmailClicked(cardView: View, ville: Ville) {
+    override fun onVilleClicked(cardView: View, ville: Ville) {
         val detailVilleFragment = DetailVilleFragment(ville)
         (activity as NavigationHost).navigateTo(detailVilleFragment, true)
     }
 
-    override fun onEmailStarChanged(ville: Ville, newValue: Boolean) {
+    override fun onAddFavorite(ville: Ville, newValue: Boolean) {
         ville.isFavorite = newValue
         meteoAdapter?.notifyDataSetChanged()
+        val realm = Realm.getDefaultInstance()
+        realm.use { realm1 ->
+            realm1.executeTransaction { realm1.copyToRealmOrUpdate(ville) }
+        }
     }
 
-    override fun onEmailArchived(ville: Ville) {
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.search -> {
+                val rechercheVilleDialogFragment = RechercheVilleDialogFragment(this)
+                rechercheVilleDialogFragment.show(activity?.supportFragmentManager!!, "TEST")
+            }
+        }
+        return true
     }
+
 
     private fun initAdapter(){
         try {
             Realm.getDefaultInstance().use { realm ->
-                var managedVilles = realm.where(Ville::class.java).findAll()
+                val managedVilles = realm.where(Ville::class.java).findAll()
                 if (managedVilles != null){
                     villes = realm.copyFromRealm(managedVilles)
                 }
@@ -113,12 +123,31 @@ class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterL
             val itemTouchHelper = ItemTouchHelper(ReboundingSwipeActionCallback())
             itemTouchHelper.attachToRecyclerView(this)
         }
+        villesFiltered = ArrayList()
+        villesFiltered?.addAll(villes!!)
 
         meteoAdapter = RecyclerViewAdapter(this, villes!!)
         gridViewHomePageAdapter = GridViewHomePageAdapter(context, villes!!, this)
 
         grid_view_search_city.adapter = gridViewHomePageAdapter
         recycler_view.adapter = meteoAdapter
+    }
 
+    override fun onGoDetailVilleGrid(ville: Ville) {
+        val detailVilleFragment = DetailVilleFragment(ville)
+        (activity as NavigationHost).navigateTo(detailVilleFragment, true)
+    }
+
+    override fun onTextChanged(villeName: String) {
+        villesFiltered?.clear()
+        for (ville in villes!!){
+            if (ville.name.contains(villeName)){
+                villesFiltered?.add(ville)
+            }
+        }
+        meteoAdapter?.setVilles(villesFiltered!!)
+        gridViewHomePageAdapter?.setVilles(villesFiltered)
+        meteoAdapter?.notifyDataSetChanged()
+        gridViewHomePageAdapter?.notifyDataSetChanged()
     }
 }

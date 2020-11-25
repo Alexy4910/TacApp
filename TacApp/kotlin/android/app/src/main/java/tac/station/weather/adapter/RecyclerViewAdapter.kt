@@ -17,9 +17,9 @@ class RecyclerViewAdapter(
 ) : RecyclerView.Adapter<RecyclerViewViewHolder>() {
 
     interface RecyclerViewAdapterListener {
-        fun onEmailClicked(cardView: View, ville: Ville)
-        fun onEmailStarChanged(ville: Ville, newValue: Boolean)
-        fun onEmailArchived(ville: Ville)
+        fun onVilleClicked(cardView: View, ville: Ville)
+        fun onAddFavorite(ville: Ville, newValue: Boolean)
+        fun onGoDetailVilleGrid(ville: Ville)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewViewHolder {
@@ -39,5 +39,9 @@ class RecyclerViewAdapter(
 
     override fun getItemCount(): Int {
         return listeMeteo.size
+    }
+
+    fun setVilles(listeMeteoNew: ArrayList<Ville>){
+        listeMeteo = listeMeteoNew
     }
 }

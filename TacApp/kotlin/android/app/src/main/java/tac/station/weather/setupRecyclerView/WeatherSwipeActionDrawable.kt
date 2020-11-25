@@ -29,10 +29,8 @@ import android.os.Build
 import androidx.annotation.ColorInt
 import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
-import com.materialstudies.reply.util.lerp
-import com.materialstudies.reply.util.lerpArgb
-import com.materialstudies.reply.util.themeColor
+import tac.station.weather.util.lerp
+import tac.station.weather.util.lerpArgb
 import com.materialstudies.reply.util.themeInterpolator
 import tac.station.weather.R
 import kotlin.math.abs
@@ -49,7 +47,7 @@ import kotlin.math.sin
 class WeatherSwipeActionDrawable(context: Context) : Drawable() {
 
     private val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = context.getResources().getColor(R.color.reply_orange_500)
+        color = context.resources.getColor(R.color.reply_orange_500)
         style = Paint.Style.FILL
     }
 
@@ -66,8 +64,8 @@ class WeatherSwipeActionDrawable(context: Context) : Drawable() {
     private val iconIntrinsicWidth = icon.intrinsicWidth
     private val iconIntrinsicHeight = icon.intrinsicHeight
 
-    @ColorInt private val iconTint = context.getResources().getColor(R.color.reply_red_200)//context.themeColor(R.attr.colorOnBackground)
-    @ColorInt private val iconTintActive = context.getResources().getColor(R.color.reply_orange_300) //context.themeColor(R.attr.colorOnSecondary)
+    @ColorInt private val iconTint = context.resources.getColor(R.color.reply_red_200)//context.themeColor(R.attr.colorOnBackground)
+    @ColorInt private val iconTintActive = context.resources.getColor(R.color.reply_orange_300) //context.themeColor(R.attr.colorOnSecondary)
 
     // Amount that we should 'overshoot' the icon's scale by when animating.
     private val iconMaxScaleAddition = 0.5F

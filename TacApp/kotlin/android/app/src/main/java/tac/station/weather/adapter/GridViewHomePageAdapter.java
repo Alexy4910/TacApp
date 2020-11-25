@@ -63,9 +63,13 @@ public class GridViewHomePageAdapter extends BaseAdapter {
         descView.setText(villes.get(i).getDescription());
 
         view.setOnClickListener(e -> {
-            this.recyclerViewAdapterListener.onEmailClicked(null, villes.get(i));
+            this.recyclerViewAdapterListener.onGoDetailVilleGrid(villes.get(i));
         });
         
         return view;
+    }
+
+    public void setVilles(List<Ville> villes) {
+        this.villes = villes;
     }
 }

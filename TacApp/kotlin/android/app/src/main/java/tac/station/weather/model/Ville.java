@@ -1,9 +1,5 @@
 package tac.station.weather.model;
 
-import android.graphics.Bitmap;
-
-import java.util.ArrayList;
-
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -90,7 +86,6 @@ public class Ville extends RealmObject {
     public void setWind(Wind wind) {
         this.wind = wind;
     }
-
 
     public byte[] getIcon() {
         return icon;

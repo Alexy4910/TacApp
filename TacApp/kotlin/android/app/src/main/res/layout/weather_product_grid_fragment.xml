@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:ignore="UnusedAttribute">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="UnusedAttribute">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -26,6 +26,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/passer_en_mode_grille" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/favori"
+                style="@style/Widget.Shrine.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mes_favoris" />
 
             <View
                 android:layout_width="56dp"
@@ -64,21 +71,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="56dp"
+            android:paddingTop="10dp"
             android:background="@color/productGridBackgroundColor"
-            android:elevation="8dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:elevation="8dp">
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingTop="2dp"
                 android:paddingBottom="56dp"
                 android:transitionGroup="true"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
         </androidx.core.widget.NestedScrollView>
@@ -86,17 +91,16 @@
         <GridView
             android:id="@+id/grid_view_search_city"
             android:layout_width="match_parent"
-            android:gravity="center"
-            android:verticalSpacing="24dp"
-            android:horizontalSpacing="10dp"
-            android:numColumns="2"
+            android:layout_height="match_parent"
             android:layout_marginTop="56dp"
             android:columnWidth="100dp"
             android:elevation="8dp"
-            android:visibility="gone"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            />
+            android:paddingTop="10dp"
+            android:gravity="center"
+            android:horizontalSpacing="10dp"
+            android:numColumns="2"
+            android:verticalSpacing="24dp"
+            android:visibility="gone" />
 
     </FrameLayout>
 </layout>

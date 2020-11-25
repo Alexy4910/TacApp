@@ -28,4 +28,8 @@
     <string name="mode_list">Passer en mode grille</string>
     <string name="ajout_au_favori">Ajout au favori</string>
     <string name="retour">Retour</string>
+    <string name="mes_favoris">Mes favoris</string>
+    <string name="retirer_des_favoris">Retirer des favoris</string>
+    <string name="ajout_favori">Ajout au favori</string>
+    <string name="recherche_de_ville">Recherche de ville</string>
 </resources>

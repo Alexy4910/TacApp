@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.materialstudies.reply.util
+package tac.station.weather.util
 
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange

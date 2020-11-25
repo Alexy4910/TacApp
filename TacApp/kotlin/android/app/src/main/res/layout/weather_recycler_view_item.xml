@@ -31,7 +31,7 @@
             android:clickable="true"
             android:elevation="@dimen/plane_00"
             android:focusable="true"
-            android:onClick="@{(view) -> listener.onEmailClicked(view, ville)}"
+            android:onClick="@{(view) -> listener.onVilleClicked(view, ville)}"
             android:transitionName="@{@string/email_card_transition_name(ville.id)}"
             app:cardPreventCornerOverlap="false">
 
@@ -64,14 +64,14 @@
                     android:layout_marginTop="@dimen/grid_1"
                     android:layout_marginEnd="@dimen/grid_2"
                     android:maxLines="1"
-                    android:maxLength="5"
+                    android:maxLength="7"
                     android:text="@{ville.tempearature}"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     app:layout_constraintEnd_toStartOf="@+id/sender_profile_image_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sender_text_view"
                     app:layout_goneMarginEnd="@dimen/grid_2"
-                    tools:text="12.52" />
+                    tools:text="12.52°C" />
 
                 <TextView
                     android:id="@+id/body_preview_text_view"

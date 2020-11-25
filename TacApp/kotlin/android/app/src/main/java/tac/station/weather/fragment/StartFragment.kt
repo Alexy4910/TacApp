@@ -48,22 +48,38 @@ class StartFragment : Fragment(), StartFragmentListener {
         }
 
         private fun getInfoWS() {
-            var ville = Ville()
-            ville.name = "Lille"
-            var ville2 = Ville()
-            ville2.name = "Paris"
-            var ville3 = Ville()
-            ville3.name = "Lyon"
-            var villes = ArrayList<Ville>()
-            villes.add(ville)
-            villes.add(ville2)
-            villes.add(ville3)
+            /**
+             * TODO taper dans un fichier mais pour le moment j'ai la flemme
+             */
+            val villes = ArrayList<String>()
+            villes.add("Lille")
+            villes.add("Paris")
+            villes.add("Lyon")
+            villes.add("Nice")
+            villes.add("Bordeaux")
+            villes.add("Toulouse")
+            villes.add("Toulon")
+            villes.add("Bailleul")
+            villes.add("Steenvoorde")
+            villes.add("Godewaersvelde")
+            villes.add("Tourcoing")
+            villes.add("Menton")
+            villes.add("Lens")
             val resultVille: ArrayList<Ville> = ArrayList()
+            val realm = Realm.getDefaultInstance()
             for (villeTmp in villes) {
                 val service: ServiceWeatherStation = WeatherStationApi.getService()
-                val call: Call<Ville> = service.getWeatherByCity(villeTmp.name, ServiceWeatherStation.API_KEY, ServiceWeatherStation.API_LANG)
+                val call: Call<Ville> = service.getWeatherByCity(villeTmp, ServiceWeatherStation.API_KEY, ServiceWeatherStation.API_LANG)
                 val villeData = call.execute().body()
                 if (villeData != null) {
+                    try {
+                        val managedVille = realm.where(Ville::class.java).equalTo("id", villeData.id).findFirst()
+                        if (managedVille != null){
+                            villeData.isFavorite = managedVille.isFavorite
+                        }
+                    } catch (ioe: Exception) {
+                        ioe.printStackTrace()
+                    }
                     //Convert Kelvin en degre ℃ =K - 273.15
                     villeData.main.feels_like = villeData.main.feels_like?.minus(273.15)
                     villeData.main.temp = villeData.main.temp?.minus(273.15)
@@ -72,10 +88,13 @@ class StartFragment : Fragment(), StartFragmentListener {
 
                     villeData.wind.speed = villeData.wind.speed?.times(3.6)
 
-                    villeData.tempearature = villeData.main.temp.toString() + "°C"
+                    if (villeData.main.temp.toString().length > 5)
+                        villeData.tempearature = villeData.main.temp.toString().substring(0,5) + "°C"
+                    else
+                        villeData.tempearature = villeData.main.temp.toString() + "°C"
                     villeData.description = villeData.weather[0]?.description
 
-                    var icon: Bitmap? = null
+                    var icon: Bitmap?
                     try {
                         val input = java.net.URL("http://openweathermap.org/img/wn/" + villeData.weather[0]?.icon + "@2x.png").openStream()
                         icon = BitmapFactory.decodeStream(input)
@@ -92,39 +111,12 @@ class StartFragment : Fragment(), StartFragmentListener {
             }
 
             try {
-                Realm.getDefaultInstance().use { realm ->
-                    realm.executeTransaction { realm.copyToRealmOrUpdate(resultVille) }
+                Realm.getDefaultInstance().use { realm2 ->
+                    realm2.executeTransaction { realm2.copyToRealmOrUpdate(resultVille) }
                 }
             } catch (ioe: Exception) {
                 ioe.printStackTrace()
             }
         }
     }
-
-    /**
-     * private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    ImageView bmImage;
-
-    public DownloadImageTask(ImageView bmImage) {
-    this.bmImage = bmImage;
-    }
-
-    protected Bitmap doInBackground(String... urls) {
-    String urldisplay = urls[0];
-    Bitmap mIcon11 = null;
-    try {
-    InputStream in = new java.net.URL(urldisplay).openStream();
-    mIcon11 = BitmapFactory.decodeStream(in);
-    } catch (Exception e) {
-    Log.e("Error", e.getMessage());
-    e.printStackTrace();
-    }
-    return mIcon11;
-    }
-
-    protected void onPostExecute(Bitmap result) {
-    bmImage.setImageBitmap(result);
-    }
-    }
-     */
 }
