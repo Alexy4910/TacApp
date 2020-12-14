@@ -16,7 +16,6 @@ import tac.station.weather.adapter.GridViewHomePageAdapter
 import tac.station.weather.adapter.RecyclerViewAdapter
 import tac.station.weather.databinding.RechercheDialogFragmentBinding
 import tac.station.weather.databinding.WeatherProductGridFragmentBinding
-import tac.station.weather.fragment.dialogFragment.AddVilleDialogFragment
 import tac.station.weather.fragment.dialogFragment.RechercheVilleDialogFragment
 import tac.station.weather.listener.RechercheListener
 import tac.station.weather.model.Ville
@@ -102,12 +101,7 @@ class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterL
         when (item.itemId) {
             R.id.search -> {
                 val rechercheVilleDialogFragment = RechercheVilleDialogFragment(this)
-                rechercheVilleDialogFragment.filter = filter
-                rechercheVilleDialogFragment.show(activity?.supportFragmentManager!!, "RECHERCHE_VILLE")
-            }
-            R.id.add_ville -> {
-                val addVilleDialogFragment = AddVilleDialogFragment()
-                addVilleDialogFragment.show(activity?.supportFragmentManager!!, "ADD_VILLE")
+                rechercheVilleDialogFragment.show(activity?.supportFragmentManager!!, "TEST")
             }
         }
         return true
@@ -144,10 +138,7 @@ class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterL
         (activity as NavigationHost).navigateTo(detailVilleFragment, true)
     }
 
-    var filter = ""
-
     override fun onTextChanged(villeName: String) {
-        filter = villeName
         villesFiltered?.clear()
         for (ville in villes!!){
             if (ville.name.contains(villeName)){

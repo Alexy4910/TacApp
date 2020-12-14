@@ -57,7 +57,7 @@
                     android:layout_marginStart="@dimen/grid_2"
                     android:layout_marginTop="@dimen/grid_1"
                     android:layout_marginEnd="@dimen/grid_2"
-                    android:maxLength="7"
+                    android:maxLength="8"
                     android:maxLines="1"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     tools:text="12.52" />

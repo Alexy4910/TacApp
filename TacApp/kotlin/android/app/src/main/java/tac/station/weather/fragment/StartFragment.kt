@@ -88,11 +88,42 @@ class StartFragment : Fragment(), StartFragmentListener {
 
                     villeData.wind.speed = villeData.wind.speed?.times(3.6)
 
+                    /**
+                     * Temperature
+                     */
                     if (villeData.main.temp.toString().length > 5)
-                        villeData.temperature = villeData.main.temp.toString().substring(0,5) + "°C"
+                        villeData.temperature = villeData.main.temp.toString().substring(0,5) + " °C"
                     else
-                        villeData.temperature = villeData.main.temp.toString() + "°C"
+                        villeData.temperature = villeData.main.temp.toString() + " °C"
+
+                    /**
+                     * Ressenti
+                     */
+                    if (villeData.main.feels_like.toString().length > 5)
+                        villeData.ressenti = villeData.main.feels_like.toString().substring(0,5) + " °C"
+                    else
+                        villeData.ressenti = villeData.main.feels_like.toString() + " °C"
+
+                    /**
+                     * Minimal
+                     */
+                    if (villeData.main.temp_max.toString().length > 5)
+                        villeData.maximal = villeData.main.temp_max.toString().substring(0,5) + " °C"
+                    else
+                        villeData.maximal = villeData.main.temp_max.toString() + " °C"
+
+                    /**
+                     * Maximal
+                     */
+                    if (villeData.main.temp_min.toString().length > 5)
+                        villeData.minimal = villeData.main.temp_min.toString().substring(0,5) + " °C"
+                    else
+                        villeData.minimal = villeData.main.temp_min.toString() + " °C"
+
                     villeData.description = villeData.weather[0]?.description
+
+                    villeData.pression = villeData.main.pressure.toString() + " Pa"
+                    villeData.humidite = villeData.main.humidity.toString() + " g/m3"
 
                     var icon: Bitmap?
                     try {

@@ -5,6 +5,7 @@
     tools:ignore="UnusedAttribute">
 
     <data>
+
         <variable
             name="ville"
             type="tac.station.weather.model.Ville" />
@@ -71,7 +72,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".6"
-                android:text="@{`Temperature : ` + ville.setTemperature}"
+                android:text="@{`Temperature : ` + ville.getTemperature()}"
                 android:textSize="20sp" />
 
             <View
@@ -152,7 +153,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".6"
-                android:text="@{`Ressenti : ` + ville.main.feels_like}"
+                android:text="@{`Ressenti : ` + ville.ressenti}"
                 android:textSize="20sp" />
 
             <View
@@ -179,7 +180,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".6"
-                android:text="@{`Minimal : ` + ville.main.temp_min}"
+                android:text="@{`Minimal : ` + ville.minimal}"
                 android:textSize="20sp" />
 
             <View
@@ -206,7 +207,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".6"
-                android:text="@{`Maximal : ` + ville.main.temp_max}"
+                android:text="@{`Maximal : ` + ville.maximal}"
                 android:textSize="20sp" />
 
             <View
@@ -233,7 +234,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".6"
-                android:text="@{`Pression : ` + ville.main.pressure}"
+                android:text="@{`Pression : ` + ville.pression}"
                 android:textSize="20sp" />
 
             <View
@@ -260,7 +261,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".6"
-                android:text="@{`Humidité : ` + ville.main.humidity}"
+                android:text="@{`Humidité : ` + ville.humidite}"
                 android:textSize="20sp" />
 
             <View
@@ -269,32 +270,28 @@
                 android:layout_weight=".2" />
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button"
+            style="@style/Widget.Shrine.Button.TextButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
+            android:layout_margin="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/retour"
+            android:textSize="20sp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/favori_button"
-                style="@style/Widget.Shrine.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_margin="20dp"
-                android:text="@{ville.favorite ? @string/retirer_des_favoris : @string/ajout_au_favori}"
-                android:textSize="20sp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/cancel_button"
-                style="@style/Widget.Shrine.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:text="@string/retour"
-                android:textSize="20sp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/favori_button"
+            style="@style/Widget.Shrine.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_above="@id/cancel_button"
+            android:text="@{ville.favorite ? @string/retirer_des_favoris : @string/ajout_au_favori}"
+            android:textSize="20sp" />
 
-        </RelativeLayout>
 
 
     </RelativeLayout>

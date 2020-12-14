@@ -20,7 +20,7 @@
     <string name="shr_dresses_label">Dresses</string>
     <string name="shr_account_label">My Account</string>
     <string name="shr_logo_content_description">Shrine Logo</string>
-    <string name="parametre">Parametre</string>
+    <string name="parametre">Parametre (en développement)</string>
     <string name="passer_en_mode_grille">Passer en mode grille</string>
 
     <string name="email_card_transition_name">email_card_%1$s</string>
@@ -28,8 +28,9 @@
     <string name="mode_list">Passer en mode grille</string>
     <string name="ajout_au_favori">Ajout au favori</string>
     <string name="retour">Retour</string>
-    <string name="mes_favoris">Mes favoris</string>
+    <string name="mes_favoris">Mes favoris (en développement)</string>
     <string name="retirer_des_favoris">Retirer des favoris</string>
     <string name="ajout_favori">Ajout au favori</string>
     <string name="recherche_de_ville">Recherche de ville</string>
+    <string name="ajouter_la_ville">Ajouter la ville</string>
 </resources>

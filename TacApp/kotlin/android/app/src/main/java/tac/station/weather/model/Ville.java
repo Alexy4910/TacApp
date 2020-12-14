@@ -53,6 +53,13 @@ public class Ville extends RealmObject {
     private String temperature = "";
     private String description = "";
 
+    private String ressenti = "";
+    private String minimal = "";
+    private String maximal = "";
+
+    private String pression = "";
+    private String humidite = "";
+
     public String getName() {
         return name;
     }
@@ -139,5 +146,45 @@ public class Ville extends RealmObject {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getRessenti() {
+        return ressenti;
+    }
+
+    public void setRessenti(String ressenti) {
+        this.ressenti = ressenti;
+    }
+
+    public String getMinimal() {
+        return minimal;
+    }
+
+    public void setMinimal(String minimal) {
+        this.minimal = minimal;
+    }
+
+    public String getMaximal() {
+        return maximal;
+    }
+
+    public void setMaximal(String maximal) {
+        this.maximal = maximal;
+    }
+
+    public String getPression() {
+        return pression;
+    }
+
+    public void setPression(String pression) {
+        this.pression = pression;
+    }
+
+    public String getHumidite() {
+        return humidite;
+    }
+
+    public void setHumidite(String humidite) {
+        this.humidite = humidite;
     }
 }

@@ -7,24 +7,19 @@ import android.view.LayoutInflater
 import androidx.annotation.Nullable
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.DialogFragment
+import tac.station.weather.databinding.AddVilleDialogFragmentBinding
 import tac.station.weather.databinding.RechercheDialogFragmentBinding
 import tac.station.weather.listener.RechercheListener
 
 
-class RechercheVilleDialogFragment(private var listener: RechercheListener) : DialogFragment() {
+class AddVilleDialogFragment() : DialogFragment() {
 
-    private lateinit var binding: RechercheDialogFragmentBinding
-
-    var filter = ""
+    private lateinit var binding: AddVilleDialogFragmentBinding
 
     override fun onCreateDialog(@Nullable savedInstanceState: Bundle?): Dialog {
-        binding = RechercheDialogFragmentBinding.inflate(LayoutInflater.from(context))
+        binding = AddVilleDialogFragmentBinding.inflate(LayoutInflater.from(context))
         val builder = AlertDialog.Builder(context)
         builder.setView(binding.root)
-
-        binding.recherche.setText(filter)
-
-        binding.recherche.doOnTextChanged { text, _, _, _ -> listener.onTextChanged(text.toString()) }
 
         return builder.create()
     }
