@@ -33,4 +33,6 @@
     <string name="ajout_favori">Ajout au favori</string>
     <string name="recherche_de_ville">Recherche de ville</string>
     <string name="ajouter_la_ville">Ajouter la ville</string>
+    <string name="ajouter_une_ville">Ajouter une ville</string>
+    <string name="synchronisation">Synchronisation</string>
 </resources>

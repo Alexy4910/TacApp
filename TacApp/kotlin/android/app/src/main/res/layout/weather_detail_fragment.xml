@@ -9,6 +9,11 @@
         <variable
             name="ville"
             type="tac.station.weather.model.Ville" />
+
+        <variable
+            name="fragment"
+            type="tac.station.weather.fragment.DetailVilleFragment" />
+
     </data>
 
     <RelativeLayout
@@ -99,7 +104,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".6"
-                android:text="@{`Vent : ` + ville.wind.speed + `m/s`}"
+                android:text="@{`Vent : ` + ville.vitesse + ` m/s`}"
                 android:textSize="20sp" />
 
             <View
@@ -278,6 +283,7 @@
             android:layout_margin="20dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:onClick="@{() -> fragment.onBackPressed()}"
             android:text="@string/retour"
             android:textSize="20sp" />
 
@@ -289,6 +295,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_above="@id/cancel_button"
+            android:onClick="@{() -> fragment.addFavori()}"
             android:text="@{ville.favorite ? @string/retirer_des_favoris : @string/ajout_au_favori}"
             android:textSize="20sp" />
 

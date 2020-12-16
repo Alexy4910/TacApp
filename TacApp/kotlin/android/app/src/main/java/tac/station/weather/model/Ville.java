@@ -60,6 +60,8 @@ public class Ville extends RealmObject {
     private String pression = "";
     private String humidite = "";
 
+    private String vitesse = "";
+
     public String getName() {
         return name;
     }
@@ -186,5 +188,13 @@ public class Ville extends RealmObject {
 
     public void setHumidite(String humidite) {
         this.humidite = humidite;
+    }
+
+    public String getVitesse() {
+        return vitesse;
+    }
+
+    public void setVitesse(String vitesse) {
+        this.vitesse = vitesse;
     }
 }

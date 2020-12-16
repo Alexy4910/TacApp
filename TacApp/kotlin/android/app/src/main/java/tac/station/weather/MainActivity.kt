@@ -6,8 +6,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import tac.station.weather.fragment.ProductGridFragment
 import tac.station.weather.fragment.StartFragment
+import tac.station.weather.fragment.dialogFragment.LoadScreenDialogFragment
 
 class MainActivity : AppCompatActivity(), NavigationHost {
 
@@ -70,5 +70,18 @@ class MainActivity : AppCompatActivity(), NavigationHost {
         }else{
             super.onBackPressed()
         }
+    }
+
+    private var loadScreenDialogFragment: LoadScreenDialogFragment? = null
+
+    fun displayProgressDialog() {
+        if (loadScreenDialogFragment == null || !loadScreenDialogFragment!!.isVisible) {
+            loadScreenDialogFragment = LoadScreenDialogFragment()
+            runOnUiThread { loadScreenDialogFragment!!.show(this@MainActivity.supportFragmentManager, LoadScreenDialogFragment.TAG) }
+        }
+    }
+
+    fun dismissProgressDialog() {
+        runOnUiThread { this.loadScreenDialogFragment!!.dismiss() }
     }
 }

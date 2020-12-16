@@ -18,12 +18,13 @@ import tac.station.weather.databinding.RechercheDialogFragmentBinding
 import tac.station.weather.databinding.WeatherProductGridFragmentBinding
 import tac.station.weather.fragment.dialogFragment.AddVilleDialogFragment
 import tac.station.weather.fragment.dialogFragment.RechercheVilleDialogFragment
+import tac.station.weather.listener.AddVilleListener
 import tac.station.weather.listener.RechercheListener
 import tac.station.weather.model.Ville
 import tac.station.weather.setupRecyclerView.ReboundingSwipeActionCallback
 
 
-class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterListener, RechercheListener {
+class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterListener, RechercheListener, AddVilleListener {
 
     private lateinit var binding: WeatherProductGridFragmentBinding
 
@@ -107,6 +108,7 @@ class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterL
             }
             R.id.add_ville -> {
                 val addVilleDialogFragment = AddVilleDialogFragment()
+                addVilleDialogFragment.listener = this
                 addVilleDialogFragment.show(activity?.supportFragmentManager!!, "ADD_VILLE")
             }
         }
@@ -158,5 +160,9 @@ class ProductGridFragment : Fragment(), RecyclerViewAdapter.RecyclerViewAdapterL
         gridViewHomePageAdapter?.setVilles(villesFiltered)
         meteoAdapter?.notifyDataSetChanged()
         gridViewHomePageAdapter?.notifyDataSetChanged()
+    }
+
+    override fun villeAdded() {
+        activity?.runOnUiThread { initAdapter() }
     }
 }

@@ -25,21 +25,18 @@ class DetailVilleFragment(private var ville: Ville) : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = WeatherDetailFragmentBinding.inflate(inflater, container, false)
         binding.ville = ville
+        binding.fragment = this
         val bitmap = BitmapFactory.decodeByteArray(ville.icon, 0, ville.icon.size)
         binding.imgVille.setImageBitmap(bitmap)
-
-        binding.cancelButton.setOnClickListener {
-            activity?.onBackPressed()
-        }
-
-        binding.favoriButton.setOnClickListener {
-            addFavori()
-        }
 
         return binding.root
     }
 
-    private fun addFavori(){
+    fun onBackPressed(){
+        activity?.onBackPressed()
+    }
+
+    fun addFavori(){
         if (ville.isFavorite){
             ville.isFavorite = false
             binding.favoriButton.text = getString(R.string.ajout_favori)

@@ -49,7 +49,7 @@ class StartFragment : Fragment(), StartFragmentListener {
 
         private fun getInfoWS() {
             /**
-             * TODO taper dans un fichier mais pour le moment j'ai la flemme
+             * TODO taper dans un fichier
              */
             val villes = ArrayList<String>()
             villes.add("Lille")
@@ -92,7 +92,7 @@ class StartFragment : Fragment(), StartFragmentListener {
                      * Temperature
                      */
                     if (villeData.main.temp.toString().length > 5)
-                        villeData.temperature = villeData.main.temp.toString().substring(0,5) + " °C"
+                        villeData.temperature = villeData.main.temp.toString().substring(0, 5) + " °C"
                     else
                         villeData.temperature = villeData.main.temp.toString() + " °C"
 
@@ -100,7 +100,7 @@ class StartFragment : Fragment(), StartFragmentListener {
                      * Ressenti
                      */
                     if (villeData.main.feels_like.toString().length > 5)
-                        villeData.ressenti = villeData.main.feels_like.toString().substring(0,5) + " °C"
+                        villeData.ressenti = villeData.main.feels_like.toString().substring(0, 5) + " °C"
                     else
                         villeData.ressenti = villeData.main.feels_like.toString() + " °C"
 
@@ -108,7 +108,7 @@ class StartFragment : Fragment(), StartFragmentListener {
                      * Minimal
                      */
                     if (villeData.main.temp_max.toString().length > 5)
-                        villeData.maximal = villeData.main.temp_max.toString().substring(0,5) + " °C"
+                        villeData.maximal = villeData.main.temp_max.toString().substring(0, 5) + " °C"
                     else
                         villeData.maximal = villeData.main.temp_max.toString() + " °C"
 
@@ -116,7 +116,7 @@ class StartFragment : Fragment(), StartFragmentListener {
                      * Maximal
                      */
                     if (villeData.main.temp_min.toString().length > 5)
-                        villeData.minimal = villeData.main.temp_min.toString().substring(0,5) + " °C"
+                        villeData.minimal = villeData.main.temp_min.toString().substring(0, 5) + " °C"
                     else
                         villeData.minimal = villeData.main.temp_min.toString() + " °C"
 
@@ -124,6 +124,8 @@ class StartFragment : Fragment(), StartFragmentListener {
 
                     villeData.pression = villeData.main.pressure.toString() + " Pa"
                     villeData.humidite = villeData.main.humidity.toString() + " g/m3"
+
+                    villeData.vitesse = villeData.wind.speed.toString().substring(0,5)
 
                     var icon: Bitmap?
                     try {

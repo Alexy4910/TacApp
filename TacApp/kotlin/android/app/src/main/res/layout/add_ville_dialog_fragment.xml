@@ -4,7 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="UnusedAttribute">
 
-    <RelativeLayout
+    <data>
+        <variable
+            name="fragment"
+            type="tac.station.weather.fragment.dialogFragment.AddVilleDialogFragment" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"
@@ -16,13 +22,12 @@
 
 
         <EditText
-            android:id="@+id/recherche"
+            android:id="@+id/add_ville_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:hint="@string/recherche_de_ville" />
+            android:hint="@string/ajouter_une_ville" />
 
 
         <com.google.android.material.button.MaterialButton
@@ -30,12 +35,11 @@
             style="@style/Widget.Shrine.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_below="@id/recherche"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:textColor="@color/reply_black_900"
+            android:onClick="@{() -> fragment.onAddVilleClick()}"
             android:text="@string/ajouter_la_ville" />
 
-    </RelativeLayout>
+    </LinearLayout>
 </layout>
